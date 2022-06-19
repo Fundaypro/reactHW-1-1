@@ -1,4 +1,6 @@
-export default function (props) {
+import PropTypes from "prop-types"
+
+export default function ShopItemFunc (props) {
     const {brand ,title ,description ,descriptionFull ,price,currency} = props.item;
     return <>
         <div className="main-content">
@@ -13,9 +15,20 @@ export default function (props) {
             </div>
             <div className="divider"></div>
             <div className="purchase-info">
-                <div className="price">{currency+price}</div>
+                <div className="price">{currency + price}</div>
                 <button>Добавить в корзину</button>
             </div>
         </div>
-        </>;
+    </>;
+}
+
+ShopItemFunc.propTypes = {
+    item : PropTypes.shape({
+        brand: PropTypes.string,
+        title: PropTypes.string,
+        description: PropTypes.string,
+        descriptionFull:  PropTypes.string,
+        price: PropTypes.number,
+        currency: PropTypes.oneOf(['£' , "$" , "€" , "₽"])
+    })
 }
